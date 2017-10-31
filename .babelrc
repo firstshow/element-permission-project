@@ -13,7 +13,7 @@
       "libraryName": "element-ui",
       "styleLibraryName": "theme-chalk"
     }
-  ]]],
+  ]],"transform-vue-jsx"],
   "env": {
     "test": {
       "presets": ["env", "stage-2"],
