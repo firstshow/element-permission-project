@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import ajaxMixin from 'src/mixins/ajaxMixin' // 引入ajax错误处理
+  import publicMixin from 'src/mixins/publicMixin'
   import { mapGetters, mapActions } from 'vuex';
   import { Loading,Message  } from 'element-ui';
   let countTimeLogin;
@@ -39,7 +39,7 @@
     components:{
       Message
     },
-    mixins: [ajaxMixin,validation],
+    mixins: [publicMixin,validation],
     data(){
       return {
         username: '',//用户名

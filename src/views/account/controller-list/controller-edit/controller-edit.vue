@@ -2,8 +2,8 @@
   <div class="x-main-body">
     <div class="x-body-header">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{name:'user-list'}">用户管理 </el-breadcrumb-item>
-        <el-breadcrumb-item>用户编辑</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name:'controller-list'}">管理员管理 </el-breadcrumb-item>
+        <el-breadcrumb-item>管理员编辑</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="x-body-content">
@@ -61,5 +61,5 @@
 </script>
 
 <style lang="scss">
-  @import "user-edit.scss";
+  @import "controller-edit.scss";
 </style>

@@ -2,11 +2,11 @@
   <div class="x-main-body">
     <div class="x-body-header">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{path:'/home'}">管理员管理 </el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/home'}">用户管理 </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="x-operation-box" flex="main:right">
-      <el-button type="primary" class="login-btn" @click="goNextPage('controller-edit')">添加管理员</el-button>
+      <el-button type="primary" class="login-btn" @click="goEditPage()">添加用户</el-button>
     </div>
     <div class="x-body-content no-padding-top">
       <el-table
@@ -89,12 +89,17 @@
         }]
       }
     },
+    computed: {
+      username () {
+        return this.$store.state.userInfo.username
+      }
+    },
     methods: {
-
+     
     }
   }
 </script>
 
 <style lang="scss">
-  @import "controller-list.scss";
+  @import "mechanism-power-list.scss";
 </style>

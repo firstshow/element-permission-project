@@ -2,13 +2,10 @@
   <div class="x-main-body">
     <div class="x-body-header">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{path:'/home'}">管理员管理 </el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/home'}">机构列表 </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="x-operation-box" flex="main:right">
-      <el-button type="primary" class="login-btn" @click="goNextPage('controller-edit')">添加管理员</el-button>
-    </div>
-    <div class="x-body-content no-padding-top">
+    <div class="x-body-content">
       <el-table
         class="x-table"
         :data="tableData"
@@ -23,27 +20,18 @@
           label="用户名称">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="name"
           label="联系人">
         </el-table-column>
         <el-table-column
-          prop="address"
+          prop="name"
           label="联系电话">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="注册时间">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="最后登录时间">
         </el-table-column>
         <el-table-column
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
-            <el-button type="text" size="small">删除</el-button>
+            <el-button type="text" size="small" @click="goNextPage('mechanism-power-list')">权限配置</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -86,7 +74,15 @@
           date: '2016-05-03',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        }],
+        params:{
+          searchValue: ''
+        }
+      }
+    },
+    computed: {
+      username () {
+        return this.$store.state.userInfo.username
       }
     },
     methods: {
@@ -96,5 +92,5 @@
 </script>
 
 <style lang="scss">
-  @import "controller-list.scss";
+  @import "mechanism-list.scss";
 </style>

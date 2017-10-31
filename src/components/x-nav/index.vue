@@ -1,7 +1,7 @@
 <template>
   <div class="x-nav">
     <el-menu
-      default-active="/account/user-list"
+      :default-active="nowRouter"
       class="el-menu-vertical-demo"
       @open="handleOpen"
       unique-opened
@@ -17,6 +17,16 @@
           <el-menu-item index="/account/controller-list">管理员管理</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
+      <el-submenu index="/operation/sn-list">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>运营操作</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="/operation/sn-list">SN码上传功能</el-menu-item>
+          <el-menu-item index="/operation/mechanism-list">机构配置</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
     </el-menu>
   </div>
 </template>
@@ -28,8 +38,12 @@
         data() {
             return {
                 logining:'aaaaa',
+                nowRouter: '/account/user-list'
             };
         },
+      created(){
+          this.nowRouter = this.$router.history.current.fullPath;
+      },
       methods: {
         handleOpen(key, keyPath) {
           console.log(key, keyPath);

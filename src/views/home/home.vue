@@ -7,8 +7,10 @@
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
+    import publicMixin from 'src/mixins/publicMixin'
     export default {
         name: 'home',
+      mixins: [publicMixin],
         data() {
             return {
                 logining:'aaaaa',

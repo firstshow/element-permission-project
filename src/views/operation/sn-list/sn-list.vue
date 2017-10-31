@@ -1,12 +1,20 @@
 <template>
   <div class="x-main-body">
-    <div class="x-body-header">
+    <div class="x-body-header" flex="main:justify cross:center">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{path:'/home'}">管理员管理 </el-breadcrumb-item>
+        <el-breadcrumb-item :to="{path:'/home'}">SN码管理 </el-breadcrumb-item>
       </el-breadcrumb>
+
+      <div flex="main:right">
+        <el-input v-model="params.searchValue" placeholder="请输入搜索内容" style="margin-right: 5px"></el-input>
+        <el-button type="primary" >搜索</el-button>
+      </div>
     </div>
     <div class="x-operation-box" flex="main:right">
-      <el-button type="primary" class="login-btn" @click="goNextPage('controller-edit')">添加管理员</el-button>
+      <el-button type="primary" class="login-btn" >添加单条SN码</el-button>
+      <el-button type="primary" class="login-btn" >批量倒入SN码</el-button>
+      <el-button type="primary" class="login-btn" >下载Excel模版</el-button>
+      <el-button type="primary" class="login-btn" >下载全部SN码</el-button>
     </div>
     <div class="x-body-content no-padding-top">
       <el-table
@@ -16,35 +24,11 @@
       >
         <el-table-column
           prop="date"
-          label="ID">
+          label="SN码">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="用户名称">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="联系人">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="联系电话">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="注册时间">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="最后登录时间">
-        </el-table-column>
-        <el-table-column
-          label="操作"
-          width="100">
-          <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
-            <el-button type="text" size="small">删除</el-button>
-          </template>
+          label="添加时间">
         </el-table-column>
       </el-table>
 
@@ -86,7 +70,15 @@
           date: '2016-05-03',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        }],
+        params:{
+          searchValue: ''
+        }
+      }
+    },
+    computed: {
+      username () {
+        return this.$store.state.userInfo.username
       }
     },
     methods: {
@@ -96,5 +88,5 @@
 </script>
 
 <style lang="scss">
-  @import "controller-list.scss";
+  @import "sn-list.scss";
 </style>
