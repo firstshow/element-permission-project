@@ -1,5 +1,6 @@
 <template>
   <section class="login-container" @keyup.enter="login">
+    <div class="login-page-img"></div>
     <div class="login-form-box ">
       <div class="-title color-blue">用户登录</div>
       <form action="" class="login-form">
