@@ -2,11 +2,12 @@
   <div class="x-main-body">
     <div class="x-body-header">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{path:'/home'}">用户管理 </el-breadcrumb-item>
+        <el-breadcrumb-item :to="{name:'mechanism-list'}">机构列表 </el-breadcrumb-item>
+        <el-breadcrumb-item>权限列表</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="x-operation-box" flex="main:right">
-      <el-button type="primary" class="login-btn" @click="goEditPage()">添加用户</el-button>
+      <el-button type="primary" class="login-btn" @click="goNextPage('mechanism-power-edit')">新增缴费类型</el-button>
     </div>
     <div class="x-body-content no-padding-top">
       <el-table
@@ -16,33 +17,29 @@
       >
         <el-table-column
           prop="date"
-          label="ID">
+          label="缴费类型">
         </el-table-column>
         <el-table-column
           prop="name"
-          label="用户名称">
+          label="机构名称">
         </el-table-column>
         <el-table-column
           prop="address"
-          label="联系人">
+          label="机构编号">
         </el-table-column>
         <el-table-column
           prop="address"
-          label="联系电话">
+          label="条形码识别规则">
         </el-table-column>
         <el-table-column
           prop="address"
-          label="注册时间">
-        </el-table-column>
-        <el-table-column
-          prop="address"
-          label="最后登录时间">
+          label="条形码总长度">
         </el-table-column>
         <el-table-column
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
+            <el-button type="text" size="small" @click="goNextPage('mechanism-power-edit')">修改</el-button>
             <el-button type="text" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -89,13 +86,8 @@
         }]
       }
     },
-    computed: {
-      username () {
-        return this.$store.state.userInfo.username
-      }
-    },
     methods: {
-     
+
     }
   }
 </script>

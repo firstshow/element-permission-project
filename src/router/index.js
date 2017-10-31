@@ -22,10 +22,12 @@ const ControllerList = resolve => require(['../views/account/controller-list/con
 const ControllerEdit = resolve => require(['../views/account/controller-list/controller-edit/controller-edit.vue'], resolve);
 // SN码列表
 const SnList = resolve => require(['../views/operation/sn-list/sn-list.vue'], resolve);
-// SN码列表
+// 机构列表
 const MechanismList = resolve => require(['../views/operation/mechanism-list/mechanism-list.vue'], resolve);
-// SN码列表
+// 权限列表
 const MechanismPowerList = resolve => require(['../views/operation/mechanism-list/mechanism-power-list/mechanism-power-list.vue'], resolve);
+// 缴费类型配置
+const MechanismPowerEdit = resolve => require(['../views/operation/mechanism-list/mechanism-power-list/mechanism-power-edit/mechanism-power-edit.vue'], resolve);
 
 Vue.use(Router);
 
@@ -85,11 +87,16 @@ const router = new Router({
           name: 'mechanism-power-list',
           component: MechanismPowerList
         },
+        {
+          path: '/operation/mechanism-list/mechanism-power-list/mechanism-power-edit',
+          name: 'mechanism-power-edit',
+          component: MechanismPowerEdit
+        },
       ]
     },
 
   ]
-})
+});
 
 /**
  * 当用户信息中没有token时，则用户未登录
