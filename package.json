@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "flex.css": "^1.1.7",
     "node-sass": "^4.5.3",
     "nprogress": "^0.2.0",
     "sass": "^1.0.0-beta.2",

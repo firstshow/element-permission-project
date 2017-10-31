@@ -2,15 +2,15 @@
   <div class="x-header">
     <div class="type-page">
       <el-row class="header">
-        <el-col :span="12">
+        <el-col :span="18">
           <div class="text-left">
             <!--<img class="v-align-m" src="../../assets/icon/logo.png" alt="">-->
             <span class="head-name" style="">商户池管理后台</span>
           </div>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="6">
           <div class="text-right">
-            <ul class="account">
+            <ul class="account" flex="main:right">
               <li class="name">
                 <i class="name-icon icon-style"></i>
                 <span>{{userInfo.username}}</span>

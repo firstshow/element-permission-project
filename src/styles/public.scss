@@ -16,6 +16,29 @@
 
 .x-main-content{
   width: 1200px;
-  padding-top: 110px;
-  margin:0 auto;
+  min-height: 800px;
+  margin-top: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+}
+
+.x-body-header{
+  border-bottom: 1px solid #ccc;
+}
+
+.x-body-header,
+.x-body-content,
+.x-operation-box,
+.x-pagination{
+  padding: 20px 30px;
+}
+
+// 分页样式
+.x-pagination{
+  margin-top: 20px;
+}
+
+.no-padding-top{
+  padding-top: 0;
 }

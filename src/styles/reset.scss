@@ -96,6 +96,12 @@ input{
   background-color: transparent;
 }
 
+// 设置表格没有横向滚动条
+.el-table__body-wrapper {
+  overflow: hidden !important;
+  position: relative;
+}
+
 // 覆盖进度条样式
 #nprogress .bar {
   z-index: 1031;

@@ -12,8 +12,9 @@ import NProgress from 'nprogress';
 const Login = resolve => require(['../views/login/login.vue'], resolve);
 const Home = resolve => require(['../views/home/home.vue'], resolve);
 const Index = resolve => require(['../views/index.vue'], resolve);
-const UserManager = resolve => require(['../views/account/user-manager/user-manager.vue'], resolve);
-const ControllerManager = resolve => require(['../views/account/controller-manager/controller-manager.vue'], resolve);
+const UserList = resolve => require(['../views/account/user-list/user-list.vue'], resolve);
+const UserEdit = resolve => require(['../views/account/user-list/user-edit/user-edit.vue'], resolve);
+const ControllerList = resolve => require(['../views/account/controller-list/controller-list.vue'], resolve);
 
 Vue.use(Router);
 
@@ -37,14 +38,19 @@ const router = new Router({
           component: Home
         },
         {
-          path: '/account/user-manager',
-          name: 'user-manager',
-          component: UserManager
+          path: '/account/user-list',
+          name: 'user-list',
+          component: UserList
         },
         {
-          path: '/account/controller-manager',
-          name: 'controller-manager',
-          component: ControllerManager
+          path: '/account/user-list/user-edit',
+          name: 'user-edit',
+          component: UserEdit
+        },
+        {
+          path: '/account/controller-list',
+          name: 'controller-list',
+          component: ControllerList
         },
       ]
     },
