@@ -1,0 +1,149 @@
+/**
+ * 中间部分的整体样式
+ */
+
+@min-height: 560px; // 菜单导航最小高度
+
+/**中间部分最小高度是所有菜单的高度*/
+.content-box {
+    margin-top: 30px;
+    margin-bottom: 200px;
+    //min-height: @min-height;
+}
+
+.content-container {
+    margin:0 auto;
+    overflow:hidden; /*这个超出隐藏的声明在IE6里不写也是可以的*/
+}
+
+.left-nav {
+    float:left;
+    background: #383b41;
+    padding-bottom:2000px;
+    margin-bottom:-2000px;
+    .nav-list {
+        background: #383b41;
+        min-height: 700px;
+        li.el-menu-item:hover {
+            background-color: initial!important;
+        }
+        .el-menu-item.is-active:hover {
+            background-color: #3194f9!important;
+        }
+    }
+}
+
+.right-content {
+    float:left;
+    padding-bottom:2000px;
+    margin-bottom:-2000px;
+}
+
+.nav-icon {
+    position: relative;
+    top: 6px;
+    display: inline-block;
+    margin-right: 20px;
+    background-size: 100% 100%;
+}
+
+// 导航菜单图标
+// 首页
+.home-icon {
+    width: 21px;
+    height: 18px;
+ //   background-image: url("../../assets/images/home/navIcon/icon_nav_home.png");
+}
+// 收费项目
+.charging-icon {
+    width: 20px;
+    height: 18px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_nav_charging.png");
+}
+// 小区
+.community-icon {
+    width: 18px;
+    height: 19px;
+ //   background-image: url("../../assets/images/home/navIcon/icon_nav_community.png");
+}
+// 住房信息
+.house-icon {
+    width: 19px;
+    height: 19px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_nav_house.png");
+}
+// 业主信息
+.owner-icon {
+    width: 18px;
+    height: 21px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_nav_owner.png");
+}
+// 物业通知
+.push-icon {
+    width: 18px;
+    height: 18px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_nav_push.png");
+}
+// 报修
+.repair-icon {
+    width: 21px;
+    height: 21px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_nav_repair.png");
+}
+// 生活号
+.lifeNumber-icon {
+    width: 20px;
+    height: 20px;
+   // background-image: url("../../assets/images/home/navIcon/icon_nav_lifeNumber.png");
+}
+// 收款账户
+.beneficiaryAccount-icon {
+    width: 20px;
+    height: 17px;
+   // background-image: url("../../assets/images/home/navIcon/icon_nav_beneficiaryAccount.png");
+}
+// 人员
+.users-icon {
+    width: 23px;
+    height: 26px;
+ //   background-image: url("../../assets/images/home/navIcon/icon_nav_users.png");
+}
+
+// 财务统计
+.finance-statistics{
+    width: 23px;
+    height: 26px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_nav_financeStatistics.png");
+}
+// 系统操作记录
+.operate-record{
+    width: 23px;
+    height: 26px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_nav_operateRecord.png");
+}
+// 系统设置
+.system-set{
+    width: 23px;4
+    height: 26px;
+  //  background-image: url("../../assets/images/home/navIcon/icon_set.png");
+}
+.content-port{
+  /*左侧菜单栏 start*/
+  .menu-port{
+    min-height:600px;
+    margin-top:30px;
+    background:#fff;
+    .el-col:nth-of-type(1){
+      min-height:600px;
+      border-right: 1px solid #e7e8eb;
+    }
+  }
+  /*左侧菜单栏 end*/
+
+  .first-enter-style{
+      border-bottom: 1px solid #fff !important;
+      background-color: #3b7ac8 !important;
+      color: #fff !important;
+  }
+
+}

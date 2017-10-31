@@ -1,0 +1,51 @@
+// 默认margin值
+.default-margin {
+    margin: 1rem;
+}
+
+// 默认padding值
+.default-padding {
+    padding: .5rem;
+    box-sizing: border-box;
+}
+
+// 阴影
+.x-shadow(@value : 0 1px 3px rgba(50,50,50,.1)) {
+    box-shadow: @value;
+    -webkit-box-shadow: @value;
+    -moz-box-shadow: @value;
+    -o-box-shadow: @value;
+}
+
+// 过渡
+.x-transition(@value : all .3s ease) {
+    transition: @value;
+    -webkit-transition: @value;
+    -moz-transition: @value;
+    -o-transition: @value;
+}
+
+.x-transform(@value) {
+    transform: @value;
+    -moz-transform: @value;
+    -o-transform: @value;
+    -webkit-transform: @value;
+}
+
+// 文本溢出
+.text-overflow(@value: 1) {
+    overflow : hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: @value;
+    -webkit-box-orient: vertical;
+    white-space: nowrap;
+    max-width: 90%;
+}
+
+// 圆角
+.x-border-radius(@value : .3rem) {
+    border-radius: @value;
+    -webkit-border-radius: @value;
+    -moz-border-radius: @value;
+    -o-border-radius: @value;
+}
