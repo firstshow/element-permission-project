@@ -10,22 +10,46 @@ import NProgress from 'nprogress';
  * */
 // 登录页面
 const Login = resolve => require(['../views/login/login.vue'], resolve);
+const Home = resolve => require(['../views/home/home.vue'], resolve);
+const Index = resolve => require(['../views/index.vue'], resolve);
+const UserManager = resolve => require(['../views/account/user-manager/user-manager.vue'], resolve);
+const ControllerManager = resolve => require(['../views/account/controller-manager/controller-manager.vue'], resolve);
 
 Vue.use(Router);
 
 const router = new Router({
-    mode: 'history',
-    routes: [
+  mode: 'history',
+  routes: [
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/',
+      name: 'index',
+      component: Index,
+      redirect: 'home',
+      children: [
         {
-          path: '/',
-          redirect: '/login'
+          path: '/home',
+          name: 'home',
+          component: Home
         },
         {
-            path: '/login',
-            name: 'login',
-            component: Login
-        }
-    ]
+          path: '/account/user-manager',
+          name: 'user-manager',
+          component: UserManager
+        },
+        {
+          path: '/account/controller-manager',
+          name: 'controller-manager',
+          component: ControllerManager
+        },
+      ]
+    },
+
+  ]
 })
 
 /**
@@ -34,8 +58,8 @@ const router = new Router({
  * 跳转到登录页面
  * */
 router.beforeEach(({meta, path}, from, next) => {
-    NProgress.start(); // 页面切换，显示加载条
-    next()
+  NProgress.start(); // 页面切换，显示加载条
+  next()
 })
 
 /**
@@ -43,7 +67,7 @@ router.beforeEach(({meta, path}, from, next) => {
  * 隐藏进度条
  * */
 router.afterEach(({meta, path}, from, next) => {
-    NProgress.done(); // 隐藏加载条
+  NProgress.done(); // 隐藏加载条
 })
 
 export default router;

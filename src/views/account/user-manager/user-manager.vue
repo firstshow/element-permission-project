@@ -23,4 +23,5 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "user-manager.scss";
 </style>

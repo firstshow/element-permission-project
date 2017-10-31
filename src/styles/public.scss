@@ -1,3 +1,4 @@
+@import "index";
 /**
 * 公共样式
 * 如果没有特殊情况不能进行修改
@@ -5,8 +6,16 @@
 * create by ZC 2016/12/26
 **/
 
-.x-main-content{
+.x-main-section{
   position: relative;
   overflow-x: hidden;
   width: 100%;
+  height: 100%;
+  background-color: $bg-content;
+}
+
+.x-main-content{
+  width: 1200px;
+  padding-top: 110px;
+  margin:0 auto;
 }

@@ -1,13 +1,14 @@
 <template>
     <div class="aaa">
         我是登录页面{{username}}
+
     </div>
 </template>
 
 <script>
     import {mapGetters, mapActions} from 'vuex'
     export default {
-        name: 'login',
+        name: 'home',
         data() {
             return {
                 logining:'aaaaa',
@@ -22,5 +23,5 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "login.scss";
+    @import "controller-manager.scss";
 </style>

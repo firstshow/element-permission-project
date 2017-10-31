@@ -1,11 +1,153 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>my-project</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="./static/favicon.ico">
+  <title>上海电网总管理后台</title>
+  <style>
+    /*
+loading
+*/
+    #loading {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      z-index: 999;
+      margin-top: 0px;
+      top: 0px;
+      background-color: rgba(0, 0, 0, .3);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000, endColorstr=#7f000000); /*IE8支持*/
+    }
+
+    .app-loading-hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #loading-center {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    #loading-center-absolute {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      height: 50px;
+      width: 150px;
+      margin-top: -25px;
+      margin-left: -75px;
+    }
+
+    .object {
+      width: 8px;
+      height: 50px;
+      margin-right: 5px;
+      background-color: #FFF;
+      -webkit-animation: animate 1s infinite;
+      animation: animate 1s infinite;
+      float: left;
+    }
+
+    .object:last-child {
+      margin-right: 0px;
+    }
+
+    .object:nth-child(10) {
+      -webkit-animation-delay: 0.9s;
+      animation-delay: 0.9s;
+    }
+
+    .object:nth-child(9) {
+      -webkit-animation-delay: 0.8s;
+      animation-delay: 0.8s;
+    }
+
+    .object:nth-child(8) {
+      -webkit-animation-delay: 0.7s;
+      animation-delay: 0.7s;
+    }
+
+    .object:nth-child(7) {
+      -webkit-animation-delay: 0.6s;
+      animation-delay: 0.6s;
+    }
+
+    .object:nth-child(6) {
+      -webkit-animation-delay: 0.5s;
+      animation-delay: 0.5s;
+    }
+
+    .object:nth-child(5) {
+      -webkit-animation-delay: 0.4s;
+      animation-delay: 0.4s;
+    }
+
+    .object:nth-child(4) {
+      -webkit-animation-delay: 0.3s;
+      animation-delay: 0.3s;
+    }
+
+    .object:nth-child(3) {
+      -webkit-animation-delay: 0.2s;
+      animation-delay: 0.2s;
+    }
+
+    .object:nth-child(2) {
+      -webkit-animation-delay: 0.1s;
+      animation-delay: 0.1s;
+    }
+
+    @-webkit-keyframes animate {
+
+      50% {
+        -ms-transform: scaleY(0);
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+      }
+    }
+
+    @keyframes animate {
+      50% {
+        -ms-transform: scaleY(0);
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+      }
+    }
+
+    .page-des {
+      padding: 20px 10px 15px 10px;
+      margin-bottom: 10px;
+      background-color: #eee;
+      box-shadow: 0.5px .5px .5px rgba(0, 0, 0, .1);
+    }
+  </style>
+</head>
+<body>
+<!--loading-->
+<div id="loading">
+  <div id="loading-center">
+    <div id="loading-center-absolute">
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+      <div class="object"></div>
+    </div>
+  </div>
+</div>
+<!--loading Ends-->
+
+<div id="app"></div>
+<!-- built files will be auto injected -->
+<script type="text/javascript">
+  var PAGE_START_TIME = new Date().getTime() //记录页面初始化时间
+</script>
+</body>
 </html>

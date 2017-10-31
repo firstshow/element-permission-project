@@ -1,12 +1,28 @@
 <template>
   <div class="x-main-section">
-    <router-view/>
+    <x-header></x-header>
+    <div class="x-main-content">
+      <el-row>
+        <el-col :span="4">
+          <x-nav></x-nav>
+        </el-col>
+        <el-col :span="20">
+          <router-view/>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
 <script>
+  import XHeader from 'src/components/x-header/index.vue'
+  import XNav from 'src/components/x-nav/index.vue'
+
   export default {
     name: 'app',
+    components: {
+      XHeader, XNav
+    },
     mounted() {
       this.appShow();
     },
@@ -27,7 +43,4 @@
 </script>
 
 <style lang="scss">
-  @import "styles/reset";
-  @import "styles/theme";
-  @import "styles/public";
 </style>
