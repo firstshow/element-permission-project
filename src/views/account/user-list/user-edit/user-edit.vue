@@ -39,20 +39,33 @@
             node-key="role_id"
             default-expand-all
             :default-checked-keys="selectedList"
-            :expand-on-click-node="false">
+            :expand-on-click-node="false"
+            :render-content="renderContent">
           </el-tree>
 
 
         </el-col>
       </el-row>
     </div>
+
+    <!-- 新增节点弹出框 -->
+    <el-dialog title="新增菜单节点" width="500px" :visible.sync="addDialogShow">
+      <el-form :model="form">
+        <el-form-item label="菜单节点名称" label-width="120px">
+          <el-input v-model="form.menu_name" placeholder="请输入菜单节点名称" auto-complete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="addDialogShow = false">取 消</el-button>
+        <el-button type="primary" @click="confirmAddMenu()">确 定</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapActions} from 'vuex'
   import publicMixin from 'src/mixins/publicMixin'
-  let id = 1000;
   export default {
     name: 'home',
     mixins: [publicMixin],
@@ -65,6 +78,11 @@
           type: ''
         },
         selectedList:[1,5],
+        addDialogShow:false,
+        addData:null,
+        form: {
+          menu_name: '',
+        },
         data4: [{
           role_id: 1,
           role_name: '一级 1',
@@ -108,35 +126,61 @@
     },
     methods: {
       onSubmit(){
-        console.log(this.$refs.auth_tree.getCheckedNodes())
+        // 获取选中节点的数据， 函数中可以加入参数，true表示返回选中的叶子节点；默认false，选中的所有节点都返回
+        console.log(this.$refs.auth_tree.getCheckedNodes());
+
+      },
+      /**
+       * 新增一个菜单节点
+       * */
+      append(id) {
+        const newChild = { role_id: id, role_name: '123132', children:[]};
+        if (!this.addData.children) {
+          this.$set(this.addData, 'children', []);
+        }
+        this.addData.children.push(newChild);
+        this.addDialogShow = false;
+      },
+      /**
+       * 移除一个节点
+       * */
+      remove(node, data) {
+        const parent = node.parent;
+        const children = parent.data.children || parent.data;
+        const index = children.findIndex(d => d.id === data.id);
+        children.splice(index, 1);
+      },
+
+      /**
+       * 当新增节点的时候，打开新增节点弹框
+       * */
+      openAddDialog(data){
+        this.addDialogShow = true;
+        this.addData = data;
+        console.log(data);
+      },
+      /**
+       * 新增节点弹框，点击确认调接口新增菜单，获取菜单id;
+       * 获取到后 调用append方法 将新菜单加入
+       * */
+      confirmAddMenu(){
+        this.append(12314);
+      },
+      /**
+       * 渲染新增删除
+       * */
+      renderContent(h, { node, data, store }) {
+        return (
+          <span style="flex: 1; display: flex; align-items: center; justify-content: space-between; font-size: 14px; padding-right: 8px;">
+          <span>
+          <span>{node.label}</span>
+        </span>
+        <span>
+        <el-button style="font-size: 12px;" type="text" on-click={ () => this.openAddDialog(data) } >{node.level > 2 ? '' : '新增'}</el-button>
+        <el-button style="font-size: 12px;" type="text" on-click={ () => this.remove(node, data) }>删除</el-button>
+        </span>
+        </span>);
       }
-//      append(data) {
-//        const newChild = { id: id++, label: 'testtest', children: [] };
-//        if (!data.children) {
-//          this.$set(data, 'children', []);
-//        }
-//        data.children.push(newChild);
-//      },
-//
-//      remove(node, data) {
-//        const parent = node.parent;
-//        const children = parent.data.children || parent.data;
-//        const index = children.findIndex(d => d.id === data.id);
-//        children.splice(index, 1);
-//      },
-//
-//      renderContent(h, { node, data, store }) {
-//        return (
-//          <span style="flex: 1; display: flex; align-items: center; justify-content: space-between; font-size: 14px; padding-right: 8px;">
-//          <span>
-//          <span>{node.label}</span>
-//        </span>
-//        <span>
-//        <el-button style="font-size: 12px;" type="text" on-click={ () => this.append(data) }>Append</el-button>
-//        <el-button style="font-size: 12px;" type="text" on-click={ () => this.remove(node, data) }>Delete</el-button>
-//        </span>
-//        </span>);
-//      }
     }
   }
 </script>
