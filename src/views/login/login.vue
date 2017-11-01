@@ -6,14 +6,14 @@
       <form action="" class="login-form">
         <div class="login-form-title">用户登录</div>
         <div class="login-input-item ">
-          <label for="username" class="people-icon " style="margin-right: 10px;"></label>
+          <label for="username" class="people-icon " style="margin-right: 9px;"></label>
           <input type="text" id="username" v-model="username" class="login-input" placeholder="请输入用户名">
         </div>
         <div class="login-input-item  margin-top-20">
           <label for="password" class="lock-icon pos-relative"></label>
           <input type="password" id="password" v-model="password" class="login-input" placeholder="请输入密码">
         </div>
-        <div class="login-input-verify   margin-top-20">
+        <div class="login-input-verify margin-top-20">
           <div class="login-verify">
             <label for="password" class="lock-icon"></label>
             <input type="password" id="verify" v-model="verify" class="login-input" placeholder="请输入验证码">
@@ -31,14 +31,11 @@
 <script>
   import publicMixin from 'src/mixins/publicMixin'
   import { mapGetters, mapActions } from 'vuex';
-  import { Loading,Message  } from 'element-ui';
   let countTimeLogin;
   // 引入表单验证
   import validation from 'src/mixins/validation'
   export default {
-    components:{
-      Message
-    },
+
     mixins: [publicMixin,validation],
     data(){
       return {
@@ -50,8 +47,8 @@
     },
     methods: {
       ...mapActions([
-        'loginServer',
-        'saveLoginInfoServer'
+        'loginServer',//登陆接口
+//        'saveLoginInfoServer'
       ]),
       checkInfo(){
         if(!/^(\w|[\u4e00-\u9fa5]){1,16}$/.test(this.username)){
@@ -83,13 +80,13 @@
           auto_login: this.auto_login ? 1 : 0
         }).then((res)=>{
           if(res.success){
-            this.saveLoginInfoServer({
-              username: res.data.username, // 登录名
-              access:res.data.access,//
-              id:res.data.id,//
-              left_menu:res.data.auth_list.left_menu,// 左侧导航栏
-              top_menu:res.data.auth_list.top_menu,// 顶部导航栏
-            });
+//            this.saveLoginInfoServer({
+//              username: res.data.username, // 登录名
+//              access:res.data.access,//
+//              id:res.data.id,//
+//              left_menu:res.data.auth_list.left_menu,// 左侧导航栏
+//              top_menu:res.data.auth_list.top_menu,// 顶部导航栏
+//            });
             this.$router.push({ name: 'home' });
           }else{
             if(res.code === "2001"){

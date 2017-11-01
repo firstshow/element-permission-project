@@ -5,47 +5,24 @@
         <el-breadcrumb-item :to="{path:'/home'}">机构列表 </el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="x-body-content">
-      <el-table
-        class="x-table"
-        :data="tableData"
-        border
-      >
-        <el-table-column
-          prop="date"
-          label="ID">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="用户名称">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="联系人">
-        </el-table-column>
-        <el-table-column
-          prop="name"
-          label="联系电话">
-        </el-table-column>
-        <el-table-column
-          label="操作"
-          width="100">
+    <div class="x-body-content table-port">
+      <el-table class="x-table" :data="tableData" border style="width:100%">
+        <el-table-column prop="id" align="center" label="ID"></el-table-column>
+        <el-table-column prop="username" align="center" label="用户名称"></el-table-column>
+        <el-table-column prop="name" align="center" label="联系人"></el-table-column>
+        <el-table-column prop="phone" align="center" label="联系电话"></el-table-column>
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="goNextPage('mechanism-power-list')">权限配置</el-button>
+            <el-button type="text" size="small" @click="goNextPage(scope.row)">权限配置</el-button>
           </template>
         </el-table-column>
       </el-table>
 
-      <div class="x-pagination" flex="main:right">
-        <el-pagination
-          :current-page="1"
-          :page-sizes="[100, 200, 300, 400]"
-          :page-size="100"
-          small
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="400">
-        </el-pagination>
+      <!--分页 start-->
+      <div  class="x-pagination" flex="main:right">
+        <el-pagination layout="prev, pager, next" :page-size="pageSize" :total="totalNum" @current-change="handleHandlePayCurrentChange"></el-pagination>
       </div>
+      <!--分页 end-->
     </div>
   </div>
 </template>
@@ -58,26 +35,10 @@
     mixins: [publicMixin],
     data() {
       return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }],
-        params:{
-          searchValue: ''
-        }
+        tableData: [],
+        pageSize:15, // 每一页显示数据条数
+        totalNum:0, //  数据总数
+        chargePage:1, //页码
       }
     },
     computed: {
@@ -86,11 +47,52 @@
       }
     },
     methods: {
-
+      ...mapActions([
+        'getConfigListServer',//机构配置列表
+      ]),
+      /**
+       *  机构配置列表 数据
+       * */
+      getConfigList(){
+//        NProgress.start(); // 页面切换，显示加载条
+        this.getConfigListServer({
+          page:this.chargePage,
+          page_size:this.pageSize,
+        }).then(res=>{
+//          NProgress.done(); // 页面切换，显示加载条
+          this.tableData = res.data.list;
+          this.totalNum = +res.data.total;
+        })
+      },
+      /**
+       *  分页 方法
+       * */
+      handleHandlePayCurrentChange(currentPage){
+        this.chargePage = currentPage;
+        this.getConfigList();
+      },
+      /**
+      * 前往 权限配置页
+      * */
+      goNextPage(scope){
+        this.$router.push({ name: 'mechanism-power-list',query:{id:scope.id}});
+      }
+    },
+    beforeRouteEnter(to,form,next){
+      next(vm=>{
+        vm.getConfigList();
+      })
     }
   }
 </script>
 
 <style lang="scss">
   @import "mechanism-list.scss";
+</style>
+<style lang="scss">
+  .table-port{
+    .el-table--border  {
+      border-right: 1px solid #e6ebf5 !important;
+    }
+  }
 </style>

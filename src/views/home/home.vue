@@ -1,7 +1,6 @@
 <template>
     <div class="aaa">
-        我是登录页面{{username}}
-
+      <img :src="homePageImg" alt="">
     </div>
 </template>
 
@@ -13,7 +12,8 @@
       mixins: [publicMixin],
         data() {
             return {
-                logining:'aaaaa',
+              homePageImg:require('./../../assets/login/home_pagge_img.png')
+
             };
         },
         computed: {

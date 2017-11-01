@@ -29,6 +29,7 @@
 </template>
 <script>
   import {mapGetters, mapActions} from 'vuex'
+  import http from './../../utils/http'
   export default {
     name: 'header',
     data () {
@@ -42,8 +43,11 @@
       ]),
     },
     methods: {
+      ...mapActions([
+        'loginoutServer'
+      ]),
       outLog(){
-        this.http.post("pool/logout", {}).then(
+        /*this.http.post("pool/logout", {}).then(
           res => {
             if (res.success) {
               this.$message.success('退出成功');
@@ -54,7 +58,16 @@
             }
           }, error => {
             this.$message.error('退出失败');
-          });
+          });*/
+        this.loginoutServer({
+          data:1
+        }).then((res)=>{
+          if(res.success) {
+            this.$router.push({ name: 'login'})
+          } else {
+            this.handleError(res);
+          }
+        })
       }
     }
   }
