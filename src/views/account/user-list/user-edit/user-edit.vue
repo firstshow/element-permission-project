@@ -79,7 +79,8 @@
         },
         selectedList:[1,5],
         addDialogShow:false,
-        addData:null,
+        selectMenuData:null, // 选中的节点数据
+        menuStatus:1, // 当前是进行新增菜单操作还是修改操作 1：新增；2：修改
         form: {
           menu_name: '',
         },
@@ -133,12 +134,19 @@
       /**
        * 新增一个菜单节点
        * */
-      append(id) {
+      appendChild(id) {
         const newChild = { menu_id: id, menu_name: this.form.menu_name, children:[]};
-        if (!this.addData.children) {
-          this.$set(this.addData, 'children', []);
+        if (!this.selectMenuData.children) {
+          this.$set(this.selectMenuData, 'children', []);
         }
-        this.addData.children.push(newChild);
+        this.selectMenuData.children.push(newChild);
+        this.addDialogShow = false;
+      },
+      /**
+       * 修改一个菜单节点的名称
+       * */
+      editMenuName() {
+        this.selectMenuData.menu_name = this.form.menu_name;
         this.addDialogShow = false;
       },
       /**
@@ -153,18 +161,38 @@
 
       /**
        * 当新增节点的时候，打开新增节点弹框
+       * @param data 当前选中节点的数据
+       * @param status 当前是新增还是修改 1：新增；2：修改
        * */
-      openAddDialog(data){
+      openMenuDialog(data,status){
+        this.menuStatus = status;
+        this.form.menu_name = status === 2 ? data.menu_name : ''; // 当是修改的时候，把当前节点的名称显示出来
         this.addDialogShow = true;
-        this.addData = data;
-        console.log(data);
+        this.selectMenuData = data;
       },
       /**
        * 新增节点弹框，点击确认调接口新增菜单，获取菜单id;
        * 获取到后 调用append方法 将新菜单加入
        * */
       confirmAddMenu(){
-        this.append(12314);
+        if(this.menuStatus === 1){
+          this.addMenu();
+        } else {
+          this.editMenu();
+        }
+
+      },
+      /**
+       * 新增菜单节点
+       * */
+      addMenu(){
+        this.appendChild(12314);
+      },
+      /**
+       * 编辑菜单节点
+       * */
+      editMenu(){
+        this.editMenuName();
       },
       /**
        * 渲染新增删除
@@ -176,7 +204,8 @@
           <span>{node.label}</span>
         </span>
         <span>
-        <el-button style="font-size: 12px;" type="text" on-click={ () => this.openAddDialog(data) } >{node.level > 2 ? '' : '新增'}</el-button>
+        <el-button style="font-size: 12px;" type="text" on-click={ () => this.openMenuDialog(data ,1) } >{node.level > 2 ? '' : '新增'}</el-button>
+        <el-button style="font-size: 12px;" type="text" on-click={ () => this.openMenuDialog(data ,2) } >修改</el-button>
         <el-button style="font-size: 12px;" type="text" on-click={ () => this.remove(node, data) }>删除</el-button>
         </span>
         </span>);
