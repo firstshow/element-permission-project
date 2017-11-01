@@ -1,2 +1,60 @@
 @import "src/styles/theme";
+.x-main-body{
+  .search-value{
+    height:40px;
+    margin-right: 10px;
+    padding-left: 5px;
+    border:1px solid #e7e8eb;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
 
+  .SNCode-title-port{
+    text-align: center;
+    .SNCode-title{
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .SNCode-content{
+      width:60%;
+      height:40px;
+      padding-left: 5px;
+      border: 1px solid #e7e8eb;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+  }
+
+  /*导入弹框 start*/
+  .import-dialog{
+    z-index: 100;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    .import-content{
+      position: absolute;
+      top:0;
+      left:0;
+      bottom:0;
+      right: 0;
+      margin:auto;
+      width:600px;
+      height:300px;
+      border-radius: 5px;
+      background-color: #fff;
+
+      .el-form{
+        padding:30px;
+      }
+    }
+  }
+  /*导入弹框 end*/
+
+
+}
