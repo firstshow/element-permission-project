@@ -10,8 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "babel-plugin-syntax-jsx": "^6.18.0",
     "axios": "^0.17.0",
+    "babel-plugin-syntax-jsx": "^6.18.0",
     "flex.css": "^1.1.7",
     "node-sass": "^4.5.3",
     "nprogress": "^0.2.0",

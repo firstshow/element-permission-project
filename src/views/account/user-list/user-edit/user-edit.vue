@@ -9,41 +9,41 @@
     <div class="x-body-content">
       <el-row>
         <el-col :span="12">
-          <el-form label-position="right" label-width="80px" :model="formLabelAlign">
-            <el-form-item label="用户名称">
+          <el-form label-position="right" label-width="100px" :model="formLabelAlign">
+            <el-form-item label="用户名称：">
               <el-input v-model="formLabelAlign.name" placeholder="用户名称"></el-input>
             </el-form-item>
-            <el-form-item label="密码">
+            <el-form-item label="密码：">
               <el-input v-model="formLabelAlign.region" type="password" placeholder="密码"></el-input>
             </el-form-item>
-            <el-form-item label="确认密码">
+            <el-form-item label="确认密码：">
               <el-input v-model="formLabelAlign.region" type="password" placeholder="确认密码"></el-input>
             </el-form-item>
-            <el-form-item label="联系人">
+            <el-form-item label="联系人：">
               <el-input v-model="formLabelAlign.type" placeholder="联系人"></el-input>
             </el-form-item>
-            <el-form-item label="联系电话">
+            <el-form-item label="联系电话：">
               <el-input v-model="formLabelAlign.type" placeholder="联系电话"></el-input>
+            </el-form-item>
+            <el-form-item label="权限配置：">
+              <el-tree
+                ref="auth_tree"
+                :data="data4"
+                :props="defaultProps"
+                show-checkbox
+                node-key="menu_id"
+                default-expand-all
+                :default-checked-keys="selectedList"
+                :expand-on-click-node="false"
+                :render-content="renderContent">
+              </el-tree>
+
             </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="onSubmit()">立即创建</el-button>
               <el-button @click="goBack()">返回</el-button>
             </el-form-item>
           </el-form>
-
-          <el-tree
-            ref="auth_tree"
-            :data="data4"
-            :props="defaultProps"
-            show-checkbox
-            node-key="role_id"
-            default-expand-all
-            :default-checked-keys="selectedList"
-            :expand-on-click-node="false"
-            :render-content="renderContent">
-          </el-tree>
-
-
         </el-col>
       </el-row>
     </div>
@@ -84,43 +84,43 @@
           menu_name: '',
         },
         data4: [{
-          role_id: 1,
-          role_name: '一级 1',
+          menu_id: 1,
+          menu_name: '一级 1',
           children: [{
-            role_id: 4,
-            role_name: '二级 1-1',
+            menu_id: 4,
+            menu_name: '二级 1-1',
             children: [{
-              role_id: 9,
-              role_name: '三级 1-1-1'
+              menu_id: 9,
+              menu_name: '三级 1-1-1'
             }, {
-              role_id: 10,
-              role_name: '三级 1-1-2'
+              menu_id: 10,
+              menu_name: '三级 1-1-2'
             }]
           }]
         }, {
-          role_id: 2,
-          role_name: '一级 2',
+          menu_id: 2,
+          menu_name: '一级 2',
           children: [{
-            role_id: 5,
-            role_name: '二级 2-1'
+            menu_id: 5,
+            menu_name: '二级 2-1'
           }, {
-            role_id: 6,
-            role_name: '二级 2-2'
+            menu_id: 6,
+            menu_name: '二级 2-2'
           }]
         }, {
-          role_id: 3,
-          role_name: '一级 3',
+          menu_id: 3,
+          menu_name: '一级 3',
           children: [{
-            role_id: 7,
-            role_name: '二级 3-1'
+            menu_id: 7,
+            menu_name: '二级 3-1'
           }, {
-            role_id: 8,
-            role_name: '二级 3-2'
+            menu_id: 8,
+            menu_name: '二级 3-2'
           }]
         }],
         defaultProps: {
           children: 'children',
-          label: 'role_name'
+          label: 'menu_name'
         }
       }
     },
@@ -134,7 +134,7 @@
        * 新增一个菜单节点
        * */
       append(id) {
-        const newChild = { role_id: id, role_name: '123132', children:[]};
+        const newChild = { menu_id: id, menu_name: this.form.menu_name, children:[]};
         if (!this.addData.children) {
           this.$set(this.addData, 'children', []);
         }
