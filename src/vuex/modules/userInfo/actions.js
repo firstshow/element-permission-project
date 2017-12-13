@@ -29,6 +29,18 @@ export const loginServer = ({ commit },data ) => {
 }
 
 /**
+ * 请求登录
+ * @param commit
+ * @param data.name 登录名
+ * @param data.password 密码
+ * @param data.auto_login 自动登录
+ * @returns {Promise}
+ */
+export const updatePermissionList = ({ commit },data ) => {
+  commit(types.UPLOAD_USER_INFO, data); // 发送指令，存储数据
+}
+
+/**
  * 退出登录
  * @returns {Promise}
  */

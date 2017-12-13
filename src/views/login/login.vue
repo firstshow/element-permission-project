@@ -34,6 +34,7 @@
   let countTimeLogin;
   // 引入表单验证
   import validation from 'src/mixins/validation'
+  import asyncRouter from 'src/router/routes'
   export default {
 
     mixins: [publicMixin,validation],
@@ -43,12 +44,29 @@
         password: '',//密码
         verify:'',//验证码
         verifyImg:'',//验证码图片
+        list:[
+          {
+            title: '用户列表',
+            path: '/home',
+            name: 'home'
+          },
+          {
+            title: '用户列表',
+            path: '/account/user-list',
+            name: 'userList'
+          },
+          {
+            title: '用户编辑',
+            path: '/account/user-list/user-edit',
+            name: 'userEdit'
+          },
+        ]
       }
     },
     methods: {
       ...mapActions([
         'loginServer',//登陆接口
-//        'saveLoginInfoServer'
+        'updatePermissionList'
       ]),
       checkInfo(){
         if(!/^(\w|[\u4e00-\u9fa5]){1,16}$/.test(this.username)){
@@ -80,14 +98,19 @@
           auto_login: this.auto_login ? 1 : 0
         }).then((res)=>{
           if(res.success){
-//            this.saveLoginInfoServer({
-//              username: res.data.username, // 登录名
-//              access:res.data.access,//
-//              id:res.data.id,//
-//              left_menu:res.data.auth_list.left_menu,// 左侧导航栏
-//              top_menu:res.data.auth_list.top_menu,// 顶部导航栏
-//            });
-            this.$router.push({ name: 'home' });
+            this.routerMatch(this.list).then((res)=>{
+              let originPath = res.concat([{
+                path: '*',
+                redirect: '/404'
+              }]);
+              this.$router.addRoutes(originPath);
+              this.updatePermissionList({
+                routesList : this.list,
+                permissionList : originPath
+              });
+              this.$router.push({ name: 'home' });
+            });
+
           }else{
             if(res.code === "2001"){
               this.untreatedPhoneNumber = parseInt(res.data.cellphone);
@@ -114,6 +137,37 @@
           }
         })
       },
+      /**
+       * 遍历路由表，筛选与权限列表符合的路由
+       * */
+      routerMatch(permission){
+        return new Promise((resolve) => {
+          // 这里需要获取完整的已经编译好的router对象，不可为空数组，也不能用类router的对象。因为当程序运行到这里时，vue-router已经解析完毕
+          const routers = asyncRouter[0];
+
+          this.transformationToHash(permission).then((res)=>{
+            asyncRouter.forEach((d,i)=>{
+              console.log(d);
+              if(res[d.path]){
+                routers.children.push(d);
+              }
+            })
+          });
+          resolve([routers])
+        })
+      },
+      /**
+       * 将接收到的权限列表转成对象
+       * */
+      transformationToHash(data){
+        return new Promise((resolve) => {
+          let hashRoutes = {};
+          data.forEach((d)=>{
+            hashRoutes[d.path] = true;
+          });
+          resolve(hashRoutes);
+        });
+      }
     }
   }
 </script>

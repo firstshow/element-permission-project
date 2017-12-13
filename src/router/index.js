@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NProgress from 'nprogress';
+import store from 'src/vuex/store'
 import * as utils from 'src/utils/util'
 
 /**
@@ -39,89 +40,20 @@ const routes = [
     name: 'login',
     component: resolve => require(['../views/login/login.vue'], resolve)
   },
-];
-
-const asyncRouter = [
   {
-    path: '/',
-    name: 'index',
-    component: (resolve) => require(['../views/index.vue'], resolve),
-    redirect: {
-      name: 'home'
-    },
-    children: []
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: (resolve) => require(['../views/home/home.vue'], resolve),
-  },
-  // 账号管理路由
-  {
-    path: '/account/user-list',
-    name: 'user-list',
-    component: (resolve) => require(['../views/account/user-list/user-list.vue'], resolve),
-  },
-  {
-    path: '/account/user-list/user-edit',
-    name: 'user-edit',
-    component: (resolve) => require(['../views/account/user-list/user-edit/user-edit.vue'], resolve),
-  },
-  {
-    path: '/account/controller-list',
-    name: 'controller-list',
-    component: (resolve) => require(['../views/account/controller-list/controller-list.vue'], resolve),
-  },
-  {
-    path: '/account/controller-list/controller-edit',
-    name: 'controller-edit',
-    component: (resolve) => require(['../views/account/controller-list/controller-edit/controller-edit.vue'], resolve),
-  },
-  // 运营操作
-  {
-    path: '/operation/sn-list',
-    name: 'sn-list',
-    component: (resolve) => require(['../views/operation/sn-list/sn-list.vue'], resolve),
-  },
-  {
-    path: '/operation/mechanism-list',
-    name: 'mechanism-list',
-    component: (resolve) => require(['../views/operation/mechanism-list/mechanism-list.vue'], resolve),
-  },
-  {
-    path: '/operation/mechanism-list/mechanism-power-list',
-    name: 'mechanism-power-list',
-    component: (resolve) => require(['../views/operation/mechanism-list/mechanism-power-list/mechanism-power-list.vue'], resolve),
-  },
-  {
-    path: '/operation/mechanism-list/mechanism-power-list/mechanism-power-edit',
-    name: 'mechanism-power-edit',
-    component: (resolve) => require(['../views/operation/mechanism-list/mechanism-power-list/mechanism-power-edit/mechanism-power-edit.vue'], resolve),
+    path: '/404',
+    name: '404',
+    component: resolve => require(['../views/404/404.vue'], resolve)
   }
 ];
 
+
+
 let router = new Router({
-  mode: 'hash',
+  mode: 'history',
   routes:routes
 });
 
-var data = [
-  {
-    title: '用户列表',
-    path: '/home',
-    name: 'home'
-  },
-  {
-    title: '用户列表',
-    path: '/account/user-list',
-    name: 'userList'
-  },
-  {
-    title: '用户编辑',
-    path: '/account/user-list/user-edit',
-    name: 'userEdit'
-  },
-];
 
 /**
  * 根据异步路由表中的path字段进行匹配，生成需要添加的路由对象
@@ -166,15 +98,7 @@ function transformationToHash(data){
  * 跳转到登录页面
  * */
 router.beforeEach((to, from, next) => {
-  // 匹配并生成需要添加的路由对象
-  routerMatch(data, asyncRouter).then(res => {
-    router.addRoutes(res);
-    setTimeout(()=>{
-      console.log(router.options);
-    },2000);
-
-    next();
-  })
+  next()
 });
 
 /**
