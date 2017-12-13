@@ -128,7 +128,7 @@
     methods: {
       onSubmit(){
         // 获取选中节点的数据， 函数中可以加入参数，true表示返回选中的叶子节点；默认false，选中的所有节点都返回
-        console.log(this.$refs.auth_tree.getCheckedNodes());
+        console.log(this.$refs.auth_tree.getCheckedNodes(true));
 
       },
       /**
