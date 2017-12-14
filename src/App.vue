@@ -44,7 +44,9 @@
             redirect: '/404'
           }]);
           this.$router.addRoutes(originPath);
-          this.$router.replace(toPath);
+          setTimeout(()=>{
+            this.$router.replace(toPath);
+          },1000)
         });
       },
       /**
@@ -95,16 +97,28 @@
        *  '/account/userList':true
        * }
        * 当有权限的时候，为true；没有权限，则不在该对象中
+       * 此函数中有三次循环，分别循环遍历一级目录(如：用户管理)，二级目录(如：用户列表)，及二级目录下面的所有子页面(如：新增用户、用户详情)
+       * 将所有的路由循环后，进行动态加载
        * */
       transformationToHash(data){
         return new Promise((resolve) => {
           let hashRoutes = {};
+          // 遍历一级目录
           for(let i = 0,parentNodeLength = data.length;i<parentNodeLength;i++){
             let parentNodeItem = data[i];
             if(parentNodeItem.children){
+              // 遍历二级目录
               for(let j = 0,childrenNodeLength = parentNodeItem.children.length;j<childrenNodeLength;j++){
                 let childrenNodeItem = parentNodeItem.children[j];
-                hashRoutes[childrenNodeItem.path] = true;
+                if(childrenNodeItem.children){
+                  // 遍历二级目录 下面的子路由
+                  for(let k = 0,subChildrenNodeLength = childrenNodeItem.children.length;k<subChildrenNodeLength;k++){
+                    let subChildrenNodeItem = childrenNodeItem.children[j];
+                    hashRoutes[subChildrenNodeItem.path] = true;
+                  }
+                } else {
+                  hashRoutes[childrenNodeItem.path] = true;
+                }
               }
             } else {
               hashRoutes[parentNodeItem.path] = true;
@@ -112,7 +126,7 @@
           }
           resolve(hashRoutes);
         });
-      }
+      },
     }
   }
 </script>

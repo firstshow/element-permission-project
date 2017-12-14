@@ -3,9 +3,6 @@ const asyncRouter = [
     path: '/',
     name: 'index',
     component: (resolve) => require(['../views/index.vue'], resolve),
-    redirect: {
-      name: 'home'
-    },
     children: []
   },
   {

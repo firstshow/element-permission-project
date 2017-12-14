@@ -46,24 +46,25 @@
         verifyImg:'',//验证码图片
         list:[
           {
-            title: '用户列表',
+            title: '首页',
             path: '/home',
             name: 'home'
           },
           {
             title:'用户管理',
             children:[
-
               {
                 title: '用户列表',
                 path: '/account/user-list',
-                name: 'userList'
+                name: 'userList',
+                children:[
+                  {
+                    title: '用户编辑',
+                    path: '/account/user-list/user-edit',
+                    name: 'userEdit'
+                  }
+                ]
               },
-              {
-                title: '用户编辑',
-                path: '/account/user-list/user-edit',
-                name: 'userEdit'
-              }
             ]
           },
           {

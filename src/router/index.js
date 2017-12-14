@@ -41,6 +41,12 @@ const routes = [
     component: resolve => require(['../views/login/login.vue'], resolve)
   },
   {
+    path: '/',
+    redirect: {
+      name: 'login'
+    },
+  },
+  {
     path: '/404',
     name: '404',
     component: resolve => require(['../views/404/404.vue'], resolve)
