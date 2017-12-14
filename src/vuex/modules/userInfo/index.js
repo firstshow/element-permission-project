@@ -13,8 +13,7 @@ const localData = JSON.parse(utils.getSessionData("userInfo"));
 const state = Object.assign({
   username: 'admin',
   password: '',
-  routesList: [],
-  permissionList: []
+  routesList: []
 }, localData);
 
 const mutations = {
