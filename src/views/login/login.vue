@@ -51,15 +51,31 @@
             name: 'home'
           },
           {
-            title: '用户列表',
-            path: '/account/user-list',
-            name: 'userList'
+            title:'用户管理',
+            children:[
+
+              {
+                title: '用户列表',
+                path: '/account/user-list',
+                name: 'userList'
+              },
+              {
+                title: '用户编辑',
+                path: '/account/user-list/user-edit',
+                name: 'userEdit'
+              }
+            ]
           },
           {
-            title: '用户编辑',
-            path: '/account/user-list/user-edit',
-            name: 'userEdit'
-          },
+            title:'运营操作',
+            children:[
+              {
+                title: '用户列表',
+                path: '/operation/sn-list',
+                name: 'sn-list'
+              },
+            ]
+          }
         ]
       }
     },
@@ -128,37 +144,6 @@
           }
         })
       },
-//      /**
-//       * 遍历路由表，筛选与权限列表符合的路由
-//       * */
-//      routerMatch(permission){
-//        return new Promise((resolve) => {
-//          // 这里需要获取完整的已经编译好的router对象，不可为空数组，也不能用类router的对象。因为当程序运行到这里时，vue-router已经解析完毕
-//          const routers = asyncRouter[0];
-//
-//          this.transformationToHash(permission).then((res)=>{
-//            asyncRouter.forEach((d,i)=>{
-//              console.log(d);
-//              if(res[d.path]){
-//                routers.children.push(d);
-//              }
-//            })
-//          });
-//          resolve([routers])
-//        })
-//      },
-//      /**
-//       * 将接收到的权限列表转成对象
-//       * */
-//      transformationToHash(data){
-//        return new Promise((resolve) => {
-//          let hashRoutes = {};
-//          data.forEach((d)=>{
-//            hashRoutes[d.path] = true;
-//          });
-//          resolve(hashRoutes);
-//        });
-//      }
     }
   }
 </script>

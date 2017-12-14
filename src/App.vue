@@ -9,27 +9,6 @@
   import { mapGetters, mapActions } from 'vuex';
   export default {
     name: 'app',
-    data(){
-      return {
-        list:[
-          {
-            title: '用户列表',
-            path: '/home',
-            name: 'home'
-          },
-          {
-            title: '用户列表',
-            path: '/account/user-list',
-            name: 'userList'
-          },
-          {
-            title: '用户编辑',
-            path: '/account/user-list/user-edit',
-            name: 'userEdit'
-          },
-        ]
-      }
-    },
     computed: {
       ...mapGetters([
         'userInfo',
@@ -70,6 +49,8 @@
       },
       /**
        * 初始化路由列表，当页面刷新的时候促发该函数，把有权限的路由进行加载
+       * 当已经登录，并且当有权限列表的时候，加载路由；
+       * 登录了，但是没有了权限列表，则获取权限列表；
        * */
       initRoutesList(){
         if(this.userInfo.routesList.length){
@@ -82,6 +63,10 @@
           });
         }
       },
+      /**
+       * 筛选权限列表，权限列表中拥有的权限，把对应的路由动态放到数组，再返回
+       * @param permission 权限列表
+       * */
       routerMatch(permission){
         return new Promise((resolve) => {
           // 这里需要获取完整的已经编译好的router对象，不可为空数组，也不能用类router的对象。因为当程序运行到这里时，vue-router已经解析完毕
@@ -89,22 +74,42 @@
 
           this.transformationToHash(permission).then((res)=>{
             routers.children = [];
-            asyncRouter.forEach((d,i)=>{
-              if(res[d.path]){
-                routers.children.push(d);
+            for(let i = 0,length = asyncRouter.length;i<length;i++){
+              let item = asyncRouter[i];
+              if(res[item.path]){
+                routers.children.push(item);
               }
+            }
+            asyncRouter.forEach((d,i)=>{
+
             })
           });
           console.log(routers);
           resolve([routers])
         })
       },
+      /**
+       * 将权限列表的数组转换成对象；如：
+       * {
+       *  '/home':true,
+       *  '/account/userList':true
+       * }
+       * 当有权限的时候，为true；没有权限，则不在该对象中
+       * */
       transformationToHash(data){
         return new Promise((resolve) => {
           let hashRoutes = {};
-          data.forEach((d)=>{
-            hashRoutes[d.path] = true;
-          });
+          for(let i = 0,parentNodeLength = data.length;i<parentNodeLength;i++){
+            let parentNodeItem = data[i];
+            if(parentNodeItem.children){
+              for(let j = 0,childrenNodeLength = parentNodeItem.children.length;j<childrenNodeLength;j++){
+                let childrenNodeItem = parentNodeItem.children[j];
+                hashRoutes[childrenNodeItem.path] = true;
+              }
+            } else {
+              hashRoutes[parentNodeItem.path] = true;
+            }
+          }
           resolve(hashRoutes);
         });
       }
