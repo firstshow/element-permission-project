@@ -116,9 +116,8 @@
                     let subChildrenNodeItem = childrenNodeItem.children[j];
                     hashRoutes[subChildrenNodeItem.path] = true;
                   }
-                } else {
-                  hashRoutes[childrenNodeItem.path] = true;
                 }
+                hashRoutes[childrenNodeItem.path] = true;
               }
             } else {
               hashRoutes[parentNodeItem.path] = true;

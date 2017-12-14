@@ -71,9 +71,14 @@
             title:'运营操作',
             children:[
               {
-                title: '用户列表',
+                title: 'SN码列表',
                 path: '/operation/sn-list',
                 name: 'sn-list'
+              },
+              {
+                title: '权限列表',
+                path: '/operation/mechanism-list/mechanism-power-list',
+                name: 'mechanism-power-list'
               },
             ]
           }
