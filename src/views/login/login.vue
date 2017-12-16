@@ -57,13 +57,13 @@
                 title: '用户列表',
                 path: '/account/user-list',
                 name: 'userList',
-                children:[
+//                children:[
 //                  {
 //                    title: '用户编辑',
 //                    path: '/account/user-list/user-edit',
 //                    name: 'userEdit'
 //                  }
-                ]
+//                ]
               },
             ]
           },

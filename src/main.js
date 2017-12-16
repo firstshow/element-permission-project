@@ -39,12 +39,23 @@ Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
+/** 检测是否存在该权限
+ * @param value 路由path，检测该path是否在权限列表中
+ * @returns {boolean}
+ */
+Vue.prototype.$_has = (value) => {
+  if(!store.state.userInfo.permissionList[value]){
+    return false;
+  }
+  return true;
+}
+
 Vue.directive('has', {
   bind (el, binding) {
     console.log(el);
     console.log(binding.value);
     console.log(store.state.userInfo.permissionList);
-    if(!store.state.userInfo.permissionList[binding.value]){
+    if(!Vue.prototype.$_has(binding.value)){
       el.parentNode.removeChild(el);
       return false;
     }
