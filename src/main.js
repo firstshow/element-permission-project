@@ -39,6 +39,20 @@ Vue.use(Vuex);
 
 Vue.config.productionTip = false;
 
+Vue.directive('has', {
+  bind (el, binding) {
+    console.log(el);
+    console.log(binding.value);
+    console.log(store.state.userInfo.permissionList);
+    if(!store.state.userInfo.permissionList[binding.value]){
+      el.parentNode.removeChild(el);
+      return false;
+    }
+    return true;
+  },
+});
+
+
 
 /* eslint-disable no-new */
 new Vue({

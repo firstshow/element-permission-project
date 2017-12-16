@@ -21,6 +21,9 @@
       this.appShow();
     },
     methods: {
+      ...mapActions([
+        'updateUserInfo'
+      ]),
       /**
        * 初始加载时候的loading动画
        * */
@@ -123,6 +126,10 @@
               hashRoutes[parentNodeItem.path] = true;
             }
           }
+          // 存储转换后的权限对象
+          this.updateUserInfo({
+            permissionList: hashRoutes
+          });
           resolve(hashRoutes);
         });
       },

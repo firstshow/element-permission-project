@@ -58,11 +58,11 @@
                 path: '/account/user-list',
                 name: 'userList',
                 children:[
-                  {
-                    title: '用户编辑',
-                    path: '/account/user-list/user-edit',
-                    name: 'userEdit'
-                  }
+//                  {
+//                    title: '用户编辑',
+//                    path: '/account/user-list/user-edit',
+//                    name: 'userEdit'
+//                  }
                 ]
               },
             ]
@@ -88,7 +88,7 @@
     methods: {
       ...mapActions([
         'loginServer',//登陆接口
-        'updatePermissionList'
+        'updateUserInfo'
       ]),
       checkInfo(){
         if(!/^(\w|[\u4e00-\u9fa5]){1,16}$/.test(this.username)){
@@ -120,7 +120,7 @@
           auto_login: this.auto_login ? 1 : 0
         }).then((res)=>{
           if(res.success){
-            this.updatePermissionList({
+            this.updateUserInfo({
               routesList : this.list
             });
             this.$emit('login',{name:'home'});

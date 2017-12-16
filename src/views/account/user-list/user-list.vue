@@ -6,7 +6,7 @@
       </el-breadcrumb>
     </div>
     <div class="x-operation-box" flex="main:right">
-      <el-button type="primary" class="login-btn" @click="goNextPage('user-edit')">添加用户</el-button>
+      <el-button type="primary" class="login-btn" v-has="'/account/user-list/user-edit'" @click="goNextPage('user-edit')">添加用户</el-button>
     </div>
     <div class="x-body-content no-padding-top">
       <el-table

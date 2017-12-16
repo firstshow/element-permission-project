@@ -6,7 +6,7 @@
       </el-breadcrumb>
     </div>
     <div class="x-operation-box" flex="main:right">
-      <el-button type="primary" class="login-btn" @click="goNextPage('controller-edit')">添加管理员</el-button>
+      <el-button class="login-btn" type="primary" @click="goNextPage('controller-edit')">添加管理员</el-button>
     </div>
     <div class="x-body-content no-padding-top">
       <el-table
@@ -89,9 +89,14 @@
         }]
       }
     },
+    computed: {
+      ...mapGetters([
+        'userInfo',
+      ]),
+    },
     methods: {
 
-    }
+    },
   }
 </script>
 

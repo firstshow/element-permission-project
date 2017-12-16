@@ -34,7 +34,7 @@ const Login = resolve => require(['../views/login/login.vue'], resolve);
 Vue.use(Router);
 
 
-const routes = [
+const baseRoutes = [
   {
     path: '/login',
     name: 'login',
@@ -57,7 +57,7 @@ const routes = [
 
 let router = new Router({
   mode: 'history',
-  routes:routes
+  routes:baseRoutes
 });
 
 

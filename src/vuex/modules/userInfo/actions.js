@@ -36,7 +36,7 @@ export const loginServer = ({ commit },data ) => {
  * @param data.auto_login 自动登录
  * @returns {Promise}
  */
-export const updatePermissionList = ({ commit },data ) => {
+export const updateUserInfo = ({ commit },data ) => {
   commit(types.UPLOAD_USER_INFO, data); // 发送指令，存储数据
 }
 

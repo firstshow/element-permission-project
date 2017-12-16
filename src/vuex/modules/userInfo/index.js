@@ -13,7 +13,8 @@ const localData = JSON.parse(utils.getSessionData("userInfo"));
 const state = Object.assign({
   username: 'admin',
   password: '',
-  routesList: []
+  routesList: [], // 路由权限列表
+  permissionList: {} // 转换为hash格式后的权限对象
 }, localData);
 
 const mutations = {

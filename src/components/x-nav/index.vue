@@ -12,21 +12,25 @@
       :collapse="isCollapse"
       router
       @close="handleClose">
-      <div v-for="nodes in userInfo.routesList" :key="nodes.title">
-        <el-submenu :index="nodes.children[0].path" v-if="nodes.children">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span v-if="!isCollapse">{{nodes.title}}</span>
-          </template>
-          <el-menu-item-group v-if="nodes.children">
-            <el-menu-item v-for="node in nodes.children" :index="node.path" :key="node.path">{{node.title}}</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-menu-item :index="nodes.path" v-else>
-          <i class="el-icon-setting"></i>
-          <span slot="title">{{nodes.title}}</span>
-        </el-menu-item>
-      </div>
+      <template v-for="nodes in userInfo.routesList">
+        <template v-if="nodes.children">
+          <el-submenu :index="nodes.children[0].path" :key="nodes.title">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>{{nodes.title}}</span>
+            </template>
+            <el-menu-item-group v-if="nodes.children">
+              <el-menu-item v-for="node in nodes.children" :index="node.path" :key="node.path">{{node.title}}</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </template>
+        <template v-else>
+          <el-menu-item :index="nodes.path">
+            <i class="el-icon-setting"></i>
+            <span slot="title">{{nodes.title}}</span>
+          </el-menu-item>
+        </template>
+      </template>
     </el-menu>
   </div>
 </template>

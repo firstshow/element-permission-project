@@ -34,7 +34,6 @@ module.exports = {
     proxyTable: {
       '/api': {
         target: ' https://www.easy-mock.com/mock/59f8217072bbe90500950def/admin', // 本地地址
-        // target: 'https://jiaofeigl-api-test.51fubei.com/api', // 测试地址
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
