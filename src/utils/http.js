@@ -2,9 +2,7 @@
 
 import axios from 'axios'
 import qs from 'qs'
-import { Message } from 'element-ui';
-
-let $message;
+import { Message } from 'element-ui'
 
 /**
  * 请求拦截器
@@ -36,7 +34,7 @@ function checkStatus (response) {
     return response.data
   }
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
-  statusErrorHandle(response);
+  statusErrorHandle(response)
 }
 
 /**
@@ -47,52 +45,50 @@ function checkStatus (response) {
 function checkCode (res) {
   // 请求成功，但是业务逻辑出错情况下，给出对应提示
   if (res && res.bizResponse.resultCode === 'FAIL') {
-    codeErrorHandle(res);
+    codeErrorHandle(res)
   }
-  return res.bizResponse;
+  return res.bizResponse
 }
-
 
 /**
  * 当请求出现问题时候做的处理，把错误请求信息展示
  * @param res 返回的信息
  */
-function statusErrorHandle(res){
-  console.log(res);
+function statusErrorHandle (res) {
+  console.log(res)
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
-  $message = Message({
+  Message({
     message: '错误status:' + res.status + ';错误信息:网络异常',
     type: 'warning'
-  });
+  })
 }
 
 /**
  * 当请求成功，但是出现了业务层面错误时候，给出对应的错误处理
  * @param res 返回的信息
  */
-function codeErrorHandle(res){
+function codeErrorHandle (res) {
   // 如果code异常(这里已经包括网络错误，服务器错误，后端抛出的错误)，可以弹出一个错误提示，告诉用户
-  $message = Message({
+  Message({
     message: res.bizResponse.errorMsg,
     type: 'warning'
-  });
+  })
 }
 
 export default {
   /**
-   *
+   * post 请求
    * @param url
    * @param data
-   * @param contentType
+   * @param contentType 请求类型，默认是from ，可以定义为 json
    * @returns {Promise.<TResult>}
    */
   post (url, data, contentType = 'application/x-www-form-urlencoded; charset=UTF-8') {
-    console.log(data);
     return axios({
       method: 'post',
       baseURL: process.env.API,
       url,
-      data: (contentType === 'application/x-www-form-urlencoded; charset=UTF-8') ? qs.stringify(data) : data ,
+      data: (contentType === 'application/x-www-form-urlencoded; charset=UTF-8') ? qs.stringify(data) : data,
       timeout: 10000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -109,7 +105,7 @@ export default {
     )
   },
   /**
-   *
+   * get 请求
    * @param url
    * @param params
    * @returns {Promise.<TResult>}
