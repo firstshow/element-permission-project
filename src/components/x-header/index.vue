@@ -62,10 +62,8 @@
         this.loginoutServer({
           data:1
         }).then((res)=>{
-          if(res.success) {
+          if(res.resultCode === 'SUCCESS') {
             this.$router.push({ name: 'login'})
-          } else {
-            this.handleError(res);
           }
         })
       }

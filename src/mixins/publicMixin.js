@@ -32,7 +32,7 @@ export default {
         this.$router.push({name: 'login'});
       } else {
         this.$message({
-          message: res.message,
+          message: res.msg,
           type: 'warning'
         });
       }

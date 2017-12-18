@@ -111,15 +111,16 @@
        * 登录
        */
       login() {
-        if(!this.checkInfo()){
-          return;
-        }
+//        if(!this.checkInfo()){
+//          return;
+//        }
         this.loginServer({
           username: this.username,
           password: this.password,
           auto_login: this.auto_login ? 1 : 0
         }).then((res)=>{
-          if(res.success){
+          console.log(res);
+          if(res.resultCode === 'SUCCESS'){
             this.updateUserInfo({
               routesList : this.list
             });
@@ -131,8 +132,6 @@
               this.verifyPhoneNumber = num.substr(0,3)+"****"+num.substr(7);
               this.sLoginDialog = true;
               this.getVerifyCode();
-            }else{
-              this.handleError(res);
             }
           }
         })

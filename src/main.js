@@ -6,7 +6,7 @@ import Vuex from 'vuex'
 import store from './vuex/store'
 import router from './router'
 import 'flex.css';
-import {Dialog,Button,Select,Option,Pagination,Input,Tree,Table,TableColumn,Form,FormItem,Breadcrumb,BreadcrumbItem,Row,Col,Message,Menu,MenuItem,Submenu,MenuItemGroup,DatePicker,Tooltip,Upload} from 'element-ui'
+import {Dialog,Button,Select,Option,Pagination,Input,Tree,Table,TableColumn,Form,FormItem,Breadcrumb,BreadcrumbItem,Row,Col,Message,Menu,MenuItem,Submenu,MenuItemGroup,DatePicker,Tooltip,Upload,Loading} from 'element-ui'
 
 /**
  * 按需引入element-ui组件
@@ -28,11 +28,13 @@ Vue.use(Input);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Form);
-Vue.use(FormItem);
+ Vue.use(FormItem);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Loading.directive)
+Vue.prototype.$loading = Loading.service
 Vue.prototype.$message = Message;
 
 Vue.use(Vuex);

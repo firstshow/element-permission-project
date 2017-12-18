@@ -33,7 +33,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-        target: ' https://www.easy-mock.com/mock/59f8217072bbe90500950def/admin', // 本地地址
+        target: 'https://www.easy-mock.com/mock/5981c8dba1d30433d851132c/example', // 本地地址
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

@@ -22,7 +22,7 @@ export const uploadUserInfoServer = ({ commit },data ) => {
  * @returns {Promise}
  */
 export const loginServer = ({ commit },data ) => {
-  return http.post('/admin/login/index' , data).then(response=>{
+  return http.post('/user' , data).then(response=>{
     // commit(types.REGISTER_INFO_SECOND, res); // 发送指令，存储数据
     return response;
   }).catch(error=>error);
@@ -45,7 +45,7 @@ export const updateUserInfo = ({ commit },data ) => {
  * @returns {Promise}
  */
 export const loginoutServer = ({ commit },data ) => {
-  return http.post('/admin/user/loginout' , data).then(response=>{
+  return http.post('/user' , data).then(response=>{
     // commit(types.REGISTER_INFO_SECOND, res); // 发送指令，存储数据
     return response;
   }).catch(error=>error);
