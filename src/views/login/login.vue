@@ -8,8 +8,6 @@
         <div class="login-form-title">用户登录a22123123123123123</div>
         <div class="login-form-title">用户登录</div>
         <div class="login-form-title">用户登录</div>
-        <div class="login-form-title">用户登录</div>
-        <div class="login-form-title">用户登录</div>
         <div class="login-input-item ">
           <label for="username" class="people-icon " style="margin-right: 9px;"></label>
           <input type="text" id="username" v-model="username" class="login-input" placeholder="请输入用户名">
