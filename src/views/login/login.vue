@@ -2,7 +2,7 @@
   <section class="login-container" @keyup.enter="login">
     <div class="login-page-img"></div>
     <div class="login-form-box ">
-      <div class="login-title">生活缴费总后台</div>
+      <div class="login-title">生活缴费总后台2222</div>
       <form action="" class="login-form">
         <div class="login-form-title">用户登录1111111</div>
         <div class="login-input-item ">
